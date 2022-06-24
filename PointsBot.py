@@ -1,7 +1,7 @@
 import discord
 from replit import db
 
-async def handle_message(message):
+async def handle_message(message, client):
     print("PointsBot message recieved")
 
     author = f"{message.author}"
