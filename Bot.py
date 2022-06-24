@@ -52,4 +52,4 @@ async def on_message(message):
     if message.content.startswith('#'):
         await MessageBot.handle_message(message, client)
     
-client.run(os.environ['envDiscord'])
+client.run("OTg5NTUwMDk5Mzc1OTg4ODI2.GVTncb.VSM5y8WI9eOy-9CbDg5Zw5Lhbu3RpzZhABNTrM")
