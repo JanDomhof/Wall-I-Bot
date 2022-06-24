@@ -136,4 +136,4 @@ client.on('messageCreate', message => {
 });
 
 // Bot login via Discord token from .env
-client.login(process.env.DISCORD_TOKEN);
+client.login(process.env.FLOOR_TOKEN);
