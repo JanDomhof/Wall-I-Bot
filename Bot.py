@@ -1,12 +1,15 @@
 import os
 import discord
 import json
+
+from dotenv import load_dotenv, find_dotenv
 from discord.ext.commands import Bot
 
 import MemeBot
 import PointsBot
 import MessageBot
 
+load_dotenv(find_dotenv())
 client = Bot('!')
 
 @client.event
@@ -70,4 +73,4 @@ async def on_message(message):
     if message.content.startswith('#'):
         await MessageBot.handle_message(message, client)
 
-client.run(os.environ['envDiscord'])
+client.run(os.getenv('WALL_I_TOKEN'))
