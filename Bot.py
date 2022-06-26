@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv, find_dotenv
 import discord
+import json
 from discord.ext.commands import Bot
 
 import MemeBot
@@ -35,23 +36,33 @@ async def embed(ctx):
 
   await ctx.send(embed=embed)
 
+@client.command()
+async def work(ctx):
+  with open('users.json', 'r') as f:
+    users = json.load(f)
+
+  await PointsBot.add_work(users, ctx.message.author, ctx.message.channel, 10)
+
+  with open('users.json', 'w') as f:
+    json.dump(users, f)
+
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
+  if message.author == client.user:
+    return
 
-    await client.process_commands(message)
+  await client.process_commands(message)
 
-    # messages that start with '$' are commands related to the MemeBot
-    if message.content.startswith('$'):
-        await MemeBot.handle_message(message, client)
+  # messages that start with '$' are commands related to the MemeBot
+  if message.content.startswith('$'):
+    await MemeBot.handle_message(message, client)
 
-    # messages that start with '!' are commands related to the PointsBot
-    if message.content.startswith('!'):
-        await PointsBot.handle_message(message, client)
+  # messages that start with '!' are commands related to the PointsBot
+  if message.content.startswith('!'):
+    await PointsBot.handle_message(message, client)
 
-    # messages that start with '#' are commands related to the MessageBot
-    if message.content.startswith('#'):
-        await MessageBot.handle_message(message, client)
+  # messages that start with '#' are commands related to the MessageBot
+  if message.content.startswith('#'):
+    await MessageBot.handle_message(message, client)
     
 client.run(os.getenv('WALL_I_TOKEN'))
