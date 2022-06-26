@@ -33,18 +33,12 @@ jobs = [
   },
 ]
 
-
-async def update_data(users, user):
-  if not user.id in users:
-    new_user = {}
-    new_user['points'] = 0
-    new_user['updated'] = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
-    users[str(user.id)] = new_user
-
-
-async def add_work(users, user, channel, timeout):
+async def work(users, user, channel, timeout):
   if not str(user.id) in users:
-    await update_data(users, user)
+    users[str(user.id)] = {
+      'points': 0,
+      'updated': datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    }
 
   key = str(user.id)
   updated = datetime.datetime.fromisoformat(users[key]['updated'])

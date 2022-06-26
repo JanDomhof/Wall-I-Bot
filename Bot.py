@@ -40,7 +40,7 @@ async def work(ctx):
   with open('users.json', 'r') as f:
     users = json.load(f)
 
-  await PointsBot.add_work(users, ctx.message.author, ctx.message.channel, 10)
+  await PointsBot.work(users, ctx.message.author, ctx.message.channel, 10)
 
   with open('users.json', 'w') as f:
     json.dump(users, f)
