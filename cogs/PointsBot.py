@@ -94,7 +94,7 @@ class PointsCog(commands.Cog):
     async def work(self, ctx):
         user = ctx.message.author
         channel = ctx.message.channel
-        users = json.load(open('./data/points.json', 'r'))
+        users = json.load(open('./data/balance.json', 'r'))
         timeout = 10
 
         if not str(user.id) in users:
@@ -111,7 +111,7 @@ class PointsCog(commands.Cog):
             job = random.choice(jobs)
             data['balance'] += job['salary']
             data['updated'] = datetime.datetime.now().isoformat()
-            with open('./data/points.json', 'w') as f:
+            with open('./data/balance.json', 'w') as f:
                 json.dump(users, f)
             await channel.send(embed=worked_embed(user, data['balance'], job['description'], job['salary']))
         else:
@@ -119,7 +119,7 @@ class PointsCog(commands.Cog):
 
     @commands.command()
     async def bal(self, ctx):
-        users = json.load(open('./data/points.json', 'r'))
+        users = json.load(open('./data/balance.json', 'r'))
         await ctx.message.channel.send(embed=balance_embed(
             ctx.message.author, 
             users[str(ctx.message.author.id)]['balance']
