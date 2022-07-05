@@ -8,7 +8,7 @@ client = commands.Bot('!')
 
 @client.event
 async def on_ready():
-  print("Logged in as {0.user}".format(client))
+  print("Main Bot Loaded.".format(client))
     
 for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):

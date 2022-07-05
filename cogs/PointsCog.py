@@ -88,7 +88,7 @@ class PointsCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("PointsCog loaded.")
+        print("PointsCog Loaded.")
 
     @commands.command()
     async def work(self, ctx):

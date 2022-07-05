@@ -37,7 +37,7 @@ class MemeCog(commands.Cog):
 
   @commands.Cog.listener()
   async def on_ready(self):
-      print("MemeCog loaded.")
+      print("MemeCog Loaded.")
 
   @commands.command()
   async def meme(self, ctx, meme):
